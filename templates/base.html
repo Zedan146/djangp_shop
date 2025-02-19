@@ -1,10 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    {% include 'inc/_style.html' %}
 </head>
 <body>
+<div class="page-holder">
+    <!-- navbar-->
+    {% include 'inc/_navbar.html' %}
+    
+    {% block main %}
 
+    {% endblock %}
+    
+    <!-- FOOTER -->
+    {% include 'inc/_footer.html' %}
+
+    <!-- JavaScript files-->
+    {% include 'inc/_javascript.html' %}
+
+    <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</div>
 </body>
 </html>

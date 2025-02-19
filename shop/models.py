@@ -9,7 +9,7 @@ class Category(models.Model):
     image = models.ImageField(upload_to='categories/', null=True, blank=True, verbose_name='Изображение')
     slug = models.SlugField(unique=True, null=True)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True,
-                                  verbose_name='Категория', related_name='subcategories')
+                               verbose_name='Категория', related_name='subcategories')
 
     def get_absolute_url(self):
         pass
