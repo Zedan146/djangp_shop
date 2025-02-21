@@ -49,4 +49,16 @@ class ProductAdmin(admin.ModelAdmin):
     get_photo.short_description = 'Миниатюра'
 
 
-admin.site.register(models.Gallery)
+@admin.register(models.Gallery)
+class GalleryAdmin(admin.ModelAdmin):
+    """Настройка админки для галлереи"""
+    list_display = ('image', 'get_photo')
+
+    def get_photo(self, obj):
+        """Возвращает миниатюру товара"""
+        if obj.image:
+            return mark_safe(f'<img src="{obj.image.url}" width="65">')
+        else:
+            return '-'
+
+    get_photo.short_description = 'Миниатюра'

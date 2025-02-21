@@ -12,13 +12,21 @@ class Category(models.Model):
                                verbose_name='Категория', related_name='subcategories')
 
     def get_absolute_url(self):
-        pass
+        """Ссылка на страницу категории"""
+        return reverse('category_detail', kwargs={'slug': self.slug})
 
     def __str__(self):
         return self.title
 
     def __repr__(self):
         return f'Категория: pk={self.pk}, title={self.title}'
+
+    def get_parent_category_photo(self):
+        """Для получения картинки родительской категории"""
+        if self.image:
+            return self.image.url
+        else:
+            return 'https://xvojninskaya-r49.gosweb.gosuslugi.ru/netcat_files/9/260/woocommerce_placeholder_32.png'
 
     class Meta:
         verbose_name = 'Категория'
@@ -39,7 +47,22 @@ class Product(models.Model):
     color = models.CharField(max_length=30, default='Серебро', verbose_name='Цвет/Материал')
 
     def get_absolute_url(self):
-        pass
+        """Ссылка на страницу товара"""
+        return reverse('product_detail', kwargs={'slug': self.slug})
+
+    def get_first_photo(self):
+        """Для получения первой картинки товара"""
+        if self.images.first():
+            return self.images.first().image.url
+        else:
+            return 'https://xvojninskaya-r49.gosweb.gosuslugi.ru/netcat_files/9/260/woocommerce_placeholder_32.png'
+
+    def get_all_photos(self):
+        """Для получения всех картинок товара"""
+        if self.images.all():
+            return self.images.all()
+        else:
+            return 'https://xvojninskaya-r49.gosweb.gosuslugi.ru/netcat_files/9/260/woocommerce_placeholder_32.png'
 
     def __str__(self):
         return self.title

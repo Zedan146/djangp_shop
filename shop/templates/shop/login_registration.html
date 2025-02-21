@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block main %}
+<main>
+
+    <!-- Вывод сообщения -->
+    {% include 'inc/_messages.html' %}
+
+    <div style="margin-top: 140px;"></div>
+    <div class="container d-flex justify-content-around">
+        <div class="card col-4 mb-4 mt-4">
+            <div class="card-body">
+                <h2 class="text-center">Войти в аккаунт</h2>
+                <form action="{% url 'user_login' %}" method="post">
+                    {% csrf_token %}
+                    {{ login_form.as_p }}
+                    <div style="margin-top: 20px;"></div>
+                    <button class="btn btn-primary" type="submit">Войти</button>
+                </form>
+            </div>
+        </div>
+        <div class="card col-4 mb-4 mt-4">
+            <div class="card-body">
+                <h2 class="text-center">Регистрация</h2>
+                <form action="{% url 'user_register' %}" method="post">
+                    {% csrf_token %}
+                    {{ registration_form.as_p }}
+                    <div style="margin-top: 20px;"></div>
+                    <button class="btn btn-primary" type="submit">Зарегистрироваться</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div>
+        <div style="margin-top: 140px;"></div>
+    </div>
+</main>
+{% endblock %}

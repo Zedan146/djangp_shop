@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block main %}
+<section class="py-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-6">
+                <!-- PRODUCT SLIDER-->
+
+                {% include 'shop/inc/_product_slider.html' %}
+
+            </div>
+            <!-- PRODUCT DETAILS-->
+            {% include 'shop/inc/_product_details.html' %}
+
+        </div>
+        <!-- DETAILS TABS-->
+        {% include 'shop/inc/_product_details_tabs.html' %}
+
+        <!-- RELATED PRODUCTS-->
+        {% include 'shop/inc/_related_products.html' %}
+
+    </div>
+</section>
+{% endblock %}
